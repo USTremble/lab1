@@ -19,14 +19,10 @@ struct CompleteBinaryTree {
     string serialize();
     void deserialize(string data);
     bool search(int val);
-    int maxDepth();
-    int countNodes();
     bool isComplete();
     void printTree();
     void printNode(TNode* node, string prefix, bool isLeft);
 
-    int maxDepth(TNode* node);
-    int countNodes(TNode* node);
     bool isCompleteBinaryTree(TNode* node);
 };
 
@@ -84,61 +80,33 @@ bool CompleteBinaryTree::search(int val) {
     return false;
 }
 
-int CompleteBinaryTree::maxDepth(TNode* node) {
-    if (!node)  {
-        return 0;
-    }
 
-    int leftDepth = maxDepth(node->left);
-    int rightDepth = maxDepth(node->right);
-
-    int deepSubtree;
-    if (leftDepth > rightDepth) {
-        deepSubtree = leftDepth;
-    } else {
-        deepSubtree = rightDepth;
-    }
-    return 1 + deepSubtree;
-}
-
-int CompleteBinaryTree::maxDepth() {
-    return maxDepth(root);
-}
-
-int CompleteBinaryTree::countNodes(TNode* node) {
-    if (!node) {
-        return 0;
-    }
-
-    int leftCount = countNodes(node->left);
-    int rightCount = countNodes(node->right);
-
-    int total = 1;
-    total += leftCount;
-    total += rightCount;
-    return total;
-}
-
-int CompleteBinaryTree::countNodes() {
-    return countNodes(root);
-}
-
-bool CompleteBinaryTree::isCompleteBinaryTree(TNode* node) {
+bool CompleteBinaryTree::isCompleteBinaryTree(TNode* root) {
     if (!root) {
-        return true; // т.к пустое тоже является полным
-    }
-
-    int depth = maxDepth(root);
-    int totalNodes = countNodes(root);
-
-    int maxNodes = pow(2, depth) - 1; // 2^h - 1, где h - глубина
-
-    if (totalNodes == maxNodes) {
         return true;
-    } else {
-        return false;
     }
+
+    Queue<TNode*> q;
+    q.enqueue(root);
+    bool isFoundEmpty = false;
+
+    while (q.size() > 0) {
+        TNode* current = q.dequeue();
+
+        if (current) {
+            if (isFoundEmpty) {
+                return false; // узел после пустого нарушает порядок
+            }
+            q.enqueue(current->left);
+            q.enqueue(current->right);
+        } else {
+            isFoundEmpty = true; // найден первый пустой узел
+        }
+    }
+
+    return true;
 }
+
 
 bool CompleteBinaryTree::isComplete() {
     return isCompleteBinaryTree(root);

@@ -13,7 +13,7 @@
 #include "dlist.h"
 #include "tree.h"
 
-const string FILENAME = "C:\\Users\\USTremble\\Desktop\\lr1main2\\file.data";
+const string FILENAME = "file.data";
 
 using namespace std;
 

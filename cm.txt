@@ -1,0 +1,52 @@
+ar:
+MPUSH - MPUSH name [val]
+MLEN - MLEN name
+MSET - MSET name index [val]
+MDEL - MDEL name index
+MGET - MGET name index
+MPRINT - MPRINT name 
+
+HT:
+HPUSH - HPUSH name [key] [val]
+HGET - HGET name [key]
+HDEL - HDEL name [key]
+HPRINT - HPRINT name
+
+Q:
+QPUSH - QPUSH name [val]
+QPOP - QPOP name
+QPRINT - QPRINT name
+
+S:
+SPUSH - SPUSH name [val]
+SPOP - SPOP name
+SPRINT - SPRINT name
+
+L:
+LPUSHBACK - LDPUSHBACK name [val]
+LPUSHFORWARD - LDPUSHBACK name [val]
+LDELBACK- LDPUSHBACK name
+LDELFORWARD - LDPUSHBACK name
+LDELVALUE - DLDELVALUE name [val]
+LGET - LDGET name index
+LFINDBYVALUE - LDFINDBYVALUE name [val]
+LPRINT - LDPRINT name
+
+D:
+DPUSHBACK
+DPUSHFORWARD
+DDELBACK
+DDELFORWARD
+DDELVALUE
+DGET
+DFINDBYVALUE
+DPRINT
+
+HPUSH 8 dar bar
+HPUSH 8 lar sar
+HPUSH 8 sla dar
+HPRINT 8
+HGET 8 sla
+HDEL 8 lar
+HPUSH 8 dar var
+HPRINT 8
